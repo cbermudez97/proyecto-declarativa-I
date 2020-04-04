@@ -102,10 +102,12 @@ checkEsp(L, no, L) :-
     !.
 
 moveCenter(T, C, F) :- 
-    retract(center(L)), 
+    not(T=especial),
+    center(L), 
     checkEsp(L, F, NL), 
     reduce(NL, R), 
     removeList((T, C), R, R1), 
     expand(R1, D), 
+    retract(center(L)), 
     assert(center(D)), 
     !.
