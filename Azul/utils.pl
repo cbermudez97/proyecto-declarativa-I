@@ -61,3 +61,15 @@ splitList(E, [E1|R], [E1|L], D) :-
     not(E == E1),
     splitList(E, R, L, D),
     !.
+
+flatten([], []) :- 
+    !.
+flatten([X|L], R) :- 
+    is_list(X), 
+    flatten(X, Y), 
+    flatten(L, Z), 
+    concatList(Y,Z,R), 
+    !.
+flatten([X|L], [X|R]) :- 
+    not(is_list(X)), 
+    flatten(L, R).
