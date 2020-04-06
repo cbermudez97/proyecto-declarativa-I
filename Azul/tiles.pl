@@ -72,6 +72,13 @@ buildDiscarted :- retract(discarted(_)), buildFirstDiscarted.
 :- buildFirstCenter.
 :- buildFirstDiscarted.
 
+% Add discarted Tiles
+discardTiles(ToDiscardTiles) :-
+    retract(discarted(ActualDiscarted)),
+    concatList(ActualDiscarted, ToDiscardTiles, NewDiscarted),
+    assert(discarted(NewDiscarted)),
+    !.
+
 % Move and getMoves from factory
 getMovesFactory(I, L) :- 
     factory(I, T), 
