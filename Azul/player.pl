@@ -149,6 +149,8 @@ getNewRow(Row, (Type, ActCant), (Type, ToAddCant), (Type, NewCant), (Type, DiscC
 
 addTilesToRow(PlayerId, Row, Type, Cant) :-
     getPlayerRow(PlayerId, Row, ActRow),
+    player(PlayerId,_,_,_,_,_,_,_,Wall),
+    not(member((Row, _, Type), Wall)),
     getNewRow(Row, ActRow, (Type, Cant),NewRow, Discarted),
     expand([Discarted], ExpDiscarted),
     length(ExpDiscarted, N),
