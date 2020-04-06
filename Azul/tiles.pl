@@ -111,3 +111,27 @@ moveCenter(T, C, F) :-
     retract(center(L)), 
     assert(center(D)), 
     !.
+
+% Get moves from factories in format (I, T, C) where
+% I is the factory number
+% T is the tile type
+% C is the number of tiles to get
+getAllFactMoves(R) :-
+    findall((I, T, C), (getMovesFactory(I, L), member((T, C), L)) , R1),
+    flatten(R1, R),
+    !.
+
+% Get all posible moves if move is (T, C) is a center move otherwise is a factory move
+getAllMoves(R) :-
+    getMovesCenter(C),
+    getAllFactMoves(F),
+    concatList(C,F,R),
+    !.
+
+% Make a generic move X and F is `si` if X includes taking the special tile
+moveTile((T, C), F) :-
+    moveCenter(T, C, F),
+    !.
+moveTile((I, T, C), no) :-
+    moveFactory(I, T, C),
+    !.
