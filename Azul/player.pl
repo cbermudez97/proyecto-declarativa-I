@@ -59,6 +59,26 @@ updateR5(I, R5):-
     assert(player(I, A, B, C, D, E, F, R5, H)),
     !.
 
+updateRow(PlayerId, 1, NewRowData) :-
+    updateR1(PlayerId, NewRowData),
+    !.
+
+updateRow(PlayerId, 2, NewRowData) :-
+    updateR2(PlayerId, NewRowData),
+    !.
+
+updateRow(PlayerId, 3, NewRowData) :-
+    updateR3(PlayerId, NewRowData),
+    !.
+
+updateRow(PlayerId, 4, NewRowData) :-
+    updateR4(PlayerId, NewRowData),
+    !.
+
+updateRow(PlayerId, 5, NewRowData) :-
+    updateR5(PlayerId, NewRowData),
+    !.
+
 updateWall(I, W):-
     retract(player(I, A, B, C, D, E, F, G, _)),
     assert(player(I, A, B, C, D, E, F, G, W)),
@@ -102,3 +122,30 @@ calculatePlayerMoveScore(I, R, T, S) :-
     player(I, _, _,_,_,_,_,_, W),
     calculateScore(R, T, W, S),
     !.
+
+% Get Player Row
+getPlayerRow(PlayerId, Pos, Row) :-
+    Pos >= 1,
+    Pos =< 5,
+    RealPos is Pos + 3,
+    player(PlayerId, S, D, R1, R2, R3, R4, R5, W),
+    arg(RealPos, player(PlayerId, S, D, R1, R2, R3, R4, R5, W), Row),
+    !.
+
+% Add C tiles of type T to player I in row R
+getNewRow((none, 0), ToAdd, ToAdd) :- 
+    !.
+getNewRow(Row, (Type, ActCant), (Type, ToAddCant), (Type, NewCant), (Type, DiscCant)) :-
+    NewCant is min(ActCant + ToAddCant, Row),
+    DiscCant is max(ActCant + ToAddCant - Row, 0),
+    !.
+
+addTilesToRow(PlayerId, Row, Type, Cant) :-
+    getPlayerRow(PlayerId, Row, ActRow),
+    getNewRow(Row, ActRow, (Type, Cant),NewRow, Discarted),
+    expand([Discarted], ExpDiscarted),
+    length(ExpDiscarted, N),
+    dropTiles(PlayerId, N, _),
+    discardTiles(ExpDiscarted),
+    updateRow(PlayerId, Row, NewRow),
+    !.     
