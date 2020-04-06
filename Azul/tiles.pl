@@ -94,6 +94,10 @@ moveFactory(I, T, C) :-
     !. 
 
 % Move and getMoves from center
+getMovesCenter(R) :-
+    center(L),
+    not(member(especial, L)),
+    reduce(L, R).
 getMovesCenter(R) :- 
     center(L), 
     removeList(especial, L, R1), 

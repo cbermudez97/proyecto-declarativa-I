@@ -1,9 +1,9 @@
 :-[player].
 
 % Get Player First Posible Move
-getImpData((Type, Cant), (Type, Cant)) :-
+getImpData(( _, Type, Cant), (Type, Cant)) :-
     !.
-getImpData((_, Type, Cant), (Type,Cant)) :-
+getImpData((Type, Cant), (Type, Cant)) :-
     !.
 
 buildMove(PlayerId, ((FactId, Type, Cant), Row), Move, no) :-
@@ -19,7 +19,8 @@ getFirstMove(PlayerId, Move, Especial) :-
     findall(
         (Y, Row),
         (
-            member(Y,PossiblePlays), 
+            member(Y,PossiblePlays),
+            member(Row, [1,2,3,4,5]), 
             getImpData(Y, (Type, Cant)),
             getPlayerRow(PlayerId, Row, ActRow),
             player(PlayerId,_,_,_,_,_,_,_,Wall),
