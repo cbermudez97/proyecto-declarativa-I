@@ -27,16 +27,24 @@ rotate_actual(CantPlayer) :-
 
 % Create a new players data
 createPlayer(I) :-
-    assert(player(I, 0, 0, (none, 0), (none, 0), (none, 0), (none, 0), (none, 0), [])).
+    assert(player(I, 0, 0, (none, 0), (none, 0), (none, 0), (none, 0), (none, 0), [])),
+    !.
 
 createPlayers(1) :-
-    createPlayer(1).
+    createPlayer(1),
+    !.
 
 createPlayers(N) :-
     N > 1,
     N1 is N - 1,
     createPlayers(N1),
-    createPlayer(N).
+    createPlayer(N),
+    !.
+
+% Erase all players
+erase_players :-
+    findall(_, retract(player(_,_,_,_,_,_,_,_,_)), _),
+    !.
 
 % Update player I data
 updateScore(I, N):-
