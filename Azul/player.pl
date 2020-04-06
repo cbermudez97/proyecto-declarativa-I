@@ -95,7 +95,7 @@ calculeDropScore(4, -6).
 calculeDropScore(5, -8).
 calculeDropScore(6, -11).
 calculeDropScore(7, -14).
-calculeDropScore(N, 0) :-
+calculeDropScore(N, -14) :-
     N > 7.
 
 % Player drop a tile, this update the player number of droped tiles
@@ -104,6 +104,11 @@ dropTile(I, C) :-
     D1 is D + 1,
     calculeDropScore(D1, C),
     updateDroped(I, D1),
+    !.
+
+dropTiles(I, 0, C) :-
+    player(I, _, D, _,_,_,_,_,_),
+    calculeDropScore(D, C),
     !.
 
 dropTiles(I, 1, C) :-
@@ -133,7 +138,9 @@ getPlayerRow(PlayerId, Pos, Row) :-
     !.
 
 % Add C tiles of type T to player I in row R
-getNewRow(_, (none, 0), ToAdd, ToAdd, (none, 0)) :- 
+getNewRow(Row, (none, 0), (Type, ToAddCant), (Type, AddedCant), (Type, DiscartedCant)) :-
+    AddedCant is min(Row, ToAddCant),
+    DiscartedCant is  ToAddCant - AddedCant,
     !.
 getNewRow(Row, (Type, ActCant), (Type, ToAddCant), (Type, NewCant), (Type, DiscCant)) :-
     NewCant is min(ActCant + ToAddCant, Row),
