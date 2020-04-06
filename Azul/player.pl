@@ -1,6 +1,6 @@
 :- [utils, tiles, wall].
 
-:- dynamic player/9.
+:- dynamic player/9, first_player/1, actual_player/1.
 
 % player(I, S, D, R1, R2, R3, R4, R5, W).
 % I - player index from 1 to N
@@ -8,6 +8,22 @@
 % D - number of droped tiles in the actual round
 % Ri - tuple with the format (Type, Cant), Type is `none` if row is empty
 % W - player wall with all tiles in format (Row, Column, Type)
+
+% Create and Update First Player, this assumes always start the first player
+:- assert(first_player(1)).
+update_first(NewFirst) :-
+    retract(first_player(_)),
+    assert(first_player(NewFirst)),
+    !.
+
+% Create and Rotate Actual Player
+:- assert(actual_player(1)).
+rotate_actual(CantPlayer) :- 
+    retract(actual_player(Actual)),
+    N is Actual - 1,
+    Next is ((N + 1) mod CantPlayer) + 1,
+    assert(actual_player(Next)),
+    !.
 
 % Create a new players data
 createPlayer(I) :-
