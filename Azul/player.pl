@@ -133,7 +133,7 @@ getPlayerRow(PlayerId, Pos, Row) :-
     !.
 
 % Add C tiles of type T to player I in row R
-getNewRow((none, 0), ToAdd, ToAdd, (none, 0)) :- 
+getNewRow(_, (none, 0), ToAdd, ToAdd, (none, 0)) :- 
     !.
 getNewRow(Row, (Type, ActCant), (Type, ToAddCant), (Type, NewCant), (Type, DiscCant)) :-
     NewCant is min(ActCant + ToAddCant, Row),
