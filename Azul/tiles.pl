@@ -39,7 +39,7 @@ getTile(T) :-
     bag(B),
     length(B, L),
     L1 is L+1,
-    random(0, L1, P),
+    random(1, L1, P),
     getIndex(P, B, T, BR),
     retract(bag(B)),
     assert(bag(BR)).

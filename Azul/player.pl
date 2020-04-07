@@ -24,6 +24,10 @@ rotate_actual(CantPlayer) :-
     Next is ((N + 1) mod CantPlayer) + 1,
     assert(actual_player(Next)),
     !.
+update_actual(NewActual) :-
+    retract(actual_player(_)),
+    assert(actual_player(NewActual)),
+    !.
 
 % Create a new players data
 createPlayer(I) :-
@@ -146,6 +150,10 @@ dropTiles(I, N, C) :-
     dropTile(I, C),
     !.
 
+dropEspecial(_, no).
+dropEspecial(PlayerId, si) :-
+    dropTile(PlayerId, _).
+
 % Calculate player I score when inserting Tile of type T in row R
 calculatePlayerMoveScore(I, R, T, S) :-
     player(I, _, _,_,_,_,_,_, W),
@@ -209,4 +217,5 @@ playerRoundEnd(PlayerId) :-
     tryInsertRow(PlayerId, 5, Row5, _),
     calculeDropScore(Discarted, Score6),
     updateScore(PlayerId, Score6),
+    updateDroped(PlayerId, 0),
     !.
