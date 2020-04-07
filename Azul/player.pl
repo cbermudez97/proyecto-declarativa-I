@@ -180,6 +180,12 @@ getNewRow(Row, (Type, ActCant), (Type, ToAddCant), (Type, NewCant), (Type, DiscC
     DiscCant is max(ActCant + ToAddCant - Row, 0),
     !.
 
+addTilesToRow(PlayerId, -1, Type, Cant) :- % Discard all tiles selected
+    dropTiles(PlayerId, Cant, _),
+    expand([(Type, Cant)], ToDiscard),
+    discardTiles(ToDiscard),
+    !.
+
 addTilesToRow(PlayerId, Row, Type, Cant) :-
     getPlayerRow(PlayerId, Row, ActRow),
     player(PlayerId,_,_,_,_,_,_,_,Wall),
