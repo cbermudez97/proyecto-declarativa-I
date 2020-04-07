@@ -3,11 +3,13 @@
 ].
 
 % Update next round first player
-checkEspecial(_, no).
+checkEspecial(_, no) :-
+    !.
 checkEspecial(PlayerId, si) :-
     dropEspecial(PlayerId, si),
     format("El jugador ~a tomo la ficha especial y sera el primero en la siguiente Ronda.~n",[PlayerId]),
-    update_first(PlayerId).
+    update_first(PlayerId),
+    !.
 
 % Start players rotations making all moves possible
 startPlayerRotation(_) :-
@@ -21,8 +23,8 @@ startPlayerRotation(CantPlayers) :-
     print_factories,
     print_center,
     playerMove(PlayerId, Move, Especial),
-    checkEspecial(PlayerId, Especial),
     Move,
+    checkEspecial(PlayerId, Especial),
     format("Fin del Turno.~n",[]),
     rotate_actual(CantPlayers),
     startPlayerRotation(CantPlayers),
