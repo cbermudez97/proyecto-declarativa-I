@@ -12,8 +12,16 @@ checkEspecial(PlayerId, si) :-
     !.
 
 % Start players rotations making all moves possible
-startPlayerRotation(_) :-
+startPlayerRotation(_) :- % No more possible moves
     getAllMoves([]),
+    center([]),
+    format("No se pueden realizar jugadas.~n",[]),
+    !.
+startPlayerRotation(_) :- % Weird Case
+    getAllMoves([]),
+    center([especial]),
+    actual_player(PlayerId),
+    checkEspecial(PlayerId, si),
     format("No se pueden realizar jugadas.~n",[]),
     !.
 startPlayerRotation(CantPlayers) :-
