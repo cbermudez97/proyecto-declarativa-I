@@ -182,3 +182,31 @@ addTilesToRow(PlayerId, Row, Type, Cant) :-
     discardTiles(ExpDiscarted),
     updateRow(PlayerId, Row, NewRow),
     !.     
+% Insertion of Row and get Score obtained if done
+tryInsertRow(_, Row, (_, Cant), 0) :-
+    Cant < Row,
+    !.
+tryInsertRow(PlayerId, Row, (Type, Row), Score) :-
+    calculatePlayerMoveScore(PlayerId, Row, Type, Score),
+    player(PlayerId, _, _,_,_,_,_,_, Wall),
+    findCol(Type, Row, Column),
+    concatList(Wall, [(Row, Column, Type)], NewWall),
+    updateWall(PlayerId, NewWall),
+    updateRow(PlayerId, Row, (none, 0)),
+    updateScore(PlayerId, Score),
+    CantDiscard is Row - 1,
+    expand([(Type, CantDiscard)], ToDiscard),
+    discardTiles(ToDiscard),
+    !.
+
+% Player update Round Score
+playerRoundEnd(PlayerId) :-
+    player(PlayerId, _, Discarted, Row1, Row2, Row3, Row4, Row5, _),
+    tryInsertRow(PlayerId, 1, Row1, _),
+    tryInsertRow(PlayerId, 2, Row2, _),
+    tryInsertRow(PlayerId, 3, Row3, _),
+    tryInsertRow(PlayerId, 4, Row4, _),
+    tryInsertRow(PlayerId, 5, Row5, _),
+    calculeDropScore(Discarted, Score6),
+    updateScore(PlayerId, Score6),
+    !.

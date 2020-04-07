@@ -36,7 +36,7 @@ buildBag(B) :-
 
 % Remove random tile from bag
 getTile(T) :-
-    findall(X, bag(X), [B]),
+    bag(B),
     length(B, L),
     L1 is L+1,
     random(0, L1, P),

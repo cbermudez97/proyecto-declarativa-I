@@ -31,3 +31,8 @@ getFirstMove(PlayerId, Move, Especial) :-
     ),
     buildMove(PlayerId, RawMove, Move, Especial),
     !.
+
+% Generic Move provider, change it to follow a different Strategy
+playerMove(PlayerId, Move, Especial) :-
+    getFirstMove(PlayerId, Move, Especial),
+    !.
