@@ -90,4 +90,6 @@ startAzulGame(CantPlayers) :-
     buildCenter,
     buildDiscarted,
     startAzulRound(CantPlayers),
+    format("Resultados:~n", _),
+    print_scores,
     !.

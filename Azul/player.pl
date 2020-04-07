@@ -226,3 +226,11 @@ playerRoundEnd(PlayerId) :-
     updateScore(PlayerId, Score6),
     updateDroped(PlayerId, 0),
     !.
+
+% Print players scores
+print_scores :-
+    findall((("Jugador ~a : ~a~n", [PlayerId, Score]), Score), player(PlayerId, Score,_,_,_,_,_,_,_),Scores),
+    sort(2, @>=, Scores, SortedData),
+    findall((Pattern, Data),member(((Pattern, Data),_), SortedData), SortedScores),
+    write_lines(SortedScores),
+    !.
