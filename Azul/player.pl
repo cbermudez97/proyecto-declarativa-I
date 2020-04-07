@@ -116,6 +116,7 @@ updateWall(I, W):-
 % Modify score statements
 
 % Calcule score C with alrady D droped tiles
+calculeDropScore(0, 0).
 calculeDropScore(1, -1).
 calculeDropScore(2, -2).
 calculeDropScore(3, -4).
