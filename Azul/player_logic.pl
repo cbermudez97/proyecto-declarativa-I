@@ -7,11 +7,19 @@ getImpData((Type, Cant), (Type, Cant)) :-
     !.
 
 buildMove(PlayerId, ((FactId, Type, Cant), Row), Move, no) :-
-    Move=(moveTile((FactId, Type, Cant), no), addTilesToRow(PlayerId, Row, Type, Cant)),
+    Move=(
+            moveTile((FactId, Type, Cant), no),
+            addTilesToRow(PlayerId, Row, Type, Cant), 
+            format("Jugador ~a juega ~a fichas de tipo ~a en la fila ~a desde la Factoría ~a~n", [PlayerId, Cant, Type, Row, FactId])
+        ),
     !.
 
 buildMove(PlayerId, ((Type, Cant), Row), Move, Especial) :-
-    Move=(moveTile((Type, Cant), Especial), addTilesToRow(PlayerId, Row, Type, Cant)),
+    Move=(
+            moveTile((Type, Cant), Especial),
+            addTilesToRow(PlayerId, Row, Type, Cant),
+        format("Jugador ~a juega ~a fichas de tipo ~a en la fila ~a desde el centro~n", [PlayerId, Cant, Type, Row])
+        ),
     !.
 
 getFirstMove(PlayerId, Move, Especial) :- 
