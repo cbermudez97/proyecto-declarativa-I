@@ -17,6 +17,7 @@ startPlayerRotation(CantPlayers) :-
     checkEspecial(PlayerId, Especial),
     Move,
     rotate_actual(CantPlayers),
+    startPlayerRotation(CantPlayers),
     !.
 
 % Number of Factories with N players
@@ -27,15 +28,17 @@ toBuildFacts(4, 9).
 % Start Azul Round with N players
 startAzulRound(_) :-
     findall(
-        _, 
+        PlayerId, 
         (
-            player(_,_,_,_,_,_,_,_,Wall),
+            player(PlayerId,_,_,_,_,_,_,_,Wall),
             member(Row, [1,2,3,4,5]),
             getRow(Row, Wall, RowData),
             length(RowData, 5)
         ),
-        _
+        Enders
     ),
+    length(Enders, Len),
+    Len =\= 0,
     !.
 startAzulRound(CantPlayers) :-
     first_player(RoundFirst), % Set round first player
@@ -54,6 +57,7 @@ startAzulRound(CantPlayers) :-
 
 % Start Azul Game with N players
 startAzulGame(CantPlayers) :-
+    erase_players,
     createPlayers(CantPlayers),
     buildBag(_),
     buildCenter,
