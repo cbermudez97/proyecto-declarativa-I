@@ -47,7 +47,7 @@ createPlayers(N) :-
 
 % Erase all players
 erase_players :-
-    findall(_, retract(player(_,_,_,_,_,_,_,_,_)), _),
+    retractall(player(_,_,_,_,_,_,_,_,_)),
     !.
 
 % Update player I data
