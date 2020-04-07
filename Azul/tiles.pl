@@ -93,6 +93,12 @@ moveFactory(I, T, C) :-
     retract(factory(I, _)), 
     !. 
 
+% Print all Factories
+print_factories :-
+    findall(("Factoria #~a : [~a,~a,~a,~a].~n",[I,T1,T2,T3,T4]),factory(I,[T1,T2,T3,T4]), ToPrint),
+    write_lines(ToPrint),
+    !.
+
 % Move and getMoves from center
 getMovesCenter(R) :-
     center(L),
@@ -121,6 +127,19 @@ moveCenter(T, C, F) :-
     expand(R1, D), 
     retract(center(L)), 
     assert(center(D)), 
+    !.
+
+% Print Center
+print_center :-
+    center([]),
+    format("Center [].~n", _),
+    !.
+print_center :-
+    center([First|Center]),
+    format("Center [~a", [First]),
+    findall((",~a", [X]), member(X,Center), Elems),
+    write_lines(Elems),
+    format("].~n", _),
     !.
 
 % Get moves from factories in format (I, T, C) where

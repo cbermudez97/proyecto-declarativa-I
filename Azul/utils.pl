@@ -73,3 +73,9 @@ flatten([X|L], R) :-
 flatten([X|L], [X|R]) :- 
     not(is_list(X)), 
     flatten(L, R).
+
+write_lines([]) :- !.
+write_lines([(Pattern, Data)|List]) :-
+    format(Pattern, Data),
+    write_lines(List),
+    !.
