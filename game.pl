@@ -10,6 +10,7 @@ checkBag :-
     discarted(Discarted),
     retract(bag([])),
     assert(bag(Discarted)),
+    buildDiscarted,
     !.
 
 
@@ -87,7 +88,6 @@ startAzulRound(CantPlayers) :-
     findall(_, (player(PlayerId,_,_,_,_,_,_,_,_), playerRoundEnd(PlayerId)), _), % Update players board
     checkBag,
     buildCenter, % Reset Center
-    buildDiscarted, % Reset Discarted
     format("Fin de la Preparación.~n",[]),
     startAzulRound(CantPlayers), % Play next round
     !.
