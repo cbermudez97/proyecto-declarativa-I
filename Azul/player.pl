@@ -234,3 +234,41 @@ print_scores :-
     findall((Pattern, Data),member(((Pattern, Data),_), SortedData), SortedScores),
     write_lines(SortedScores),
     !.
+
+% Copy of tryInsertRow that only modify player data, this is for use during the search of the best move
+fakeTryInsertRow(_, Row, (_, Cant), 0) :-
+    Cant < Row,
+    !.
+fakeTryInsertRow(PlayerId, Row, (Type, Row), Score) :-
+    calculatePlayerMoveScore(PlayerId, Row, Type, Score),
+    player(PlayerId, _, _,_,_,_,_,_, Wall),
+    findCol(Type, Row, Column),
+    concatList(Wall, [(Row, Column, Type)], NewWall),
+    updateWall(PlayerId, NewWall),
+    updateRow(PlayerId, Row, (none, 0)),
+    updateScore(PlayerId, Score),
+    !.
+fakePlayerRoundEnd(PlayerId) :-
+    player(PlayerId, _, Discarted, Row1, Row2, Row3, Row4, Row5, _),
+    fakeTryInsertRow(PlayerId, 1, Row1, _),
+    fakeTryInsertRow(PlayerId, 2, Row2, _),
+    fakeTryInsertRow(PlayerId, 3, Row3, _),
+    fakeTryInsertRow(PlayerId, 4, Row4, _),
+    fakeTryInsertRow(PlayerId, 5, Row5, _),
+    calculeDropScore(Discarted, Score6),
+    updateScore(PlayerId, Score6),
+    updateDroped(PlayerId, 0),
+    !.
+
+fakeAddTilesToRow(PlayerId, -1, _, Cant) :- % Discard all tiles selected
+    dropTiles(PlayerId, Cant, _),
+    !.
+
+fakeAddTilesToRow(PlayerId, Row, Type, Cant) :-
+    getPlayerRow(PlayerId, Row, ActRow),
+    player(PlayerId,_,_,_,_,_,_,_,Wall),
+    not(member((Row, _, Type), Wall)),
+    getNewRow(Row, ActRow, (Type, Cant),NewRow, (_, N)),
+    dropTiles(PlayerId, N, _),
+    updateRow(PlayerId, Row, NewRow),
+    !.

@@ -92,8 +92,33 @@ getCompleteFitMove(PlayerId, Move, Especial) :-
         buildMove(PlayerId, RawMove, Move, Especial),
     !.
 
+% Generate Best Positive Move
+getBestPosMove(PlayerId, Move, Especial) :-
+    getAllMoves(PossiblePlays),
+    findall(
+        ((Y, Row), Metric),
+        (
+            member(Y,PossiblePlays),
+            member(Row, [5, 4, 3, 2, 1, -1]), 
+            getImpData(Y, (Type, Cant)),
+            player(PlayerId,A,B,C,D,E,F,G,H),
+            assert(player(-1,A,B,C,D,E,F,G,H)),
+            fakeAddTilesToRow(-1, Row, Type, Cant),
+            fakePlayerRoundEnd(-1),
+            retract(player(-1, Metric,_,_,_,_,_,_,_))
+        ), 
+        RawMoves
+        ),
+        sort(2, @>=, RawMoves, Sorted),
+        [(RawMove, _)|_]=Sorted,
+        buildMove(PlayerId, RawMove, Move, Especial),
+    !.
+
 
 % Generic Move provider, change it to follow a different Strategy
+playerMove(PlayerId, Move, Especial) :-
+    getBestPosMove(PlayerId, Move, Especial),
+    !.
 playerMove(PlayerId, Move, Especial) :-
     getCompleteFitMove(PlayerId, Move, Especial),
     !.
