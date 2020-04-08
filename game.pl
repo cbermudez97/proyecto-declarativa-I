@@ -1,6 +1,17 @@
 :-[
     "Azul/player_logic.pl"
 ].
+% Check if bag needs to be refiled
+checkBag :-
+    bag([_|_]),
+    !.
+checkBag :-
+    bag([]),
+    discarted(Discarted),
+    retract(bag([])),
+    assert(bag(Discarted)),
+    !.
+
 
 % Update next round first player
 checkEspecial(_, no) :-
@@ -74,10 +85,7 @@ startAzulRound(CantPlayers) :-
     format("Fin de la Ronda.~n",[]),
     format("Preparando Siguiente Ronda.~n",[]),
     findall(_, (player(PlayerId,_,_,_,_,_,_,_,_), playerRoundEnd(PlayerId)), _), % Update players board
-    discarted(Discarted), % Rebuild bag
-    retract(bag(Bag)),
-    concatList(Bag,Discarted,NewBag),
-    assert(bag(NewBag)),
+    checkBag,
     buildCenter, % Reset Center
     buildDiscarted, % Reset Discarted
     format("Fin de la Preparación.~n",[]),
