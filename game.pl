@@ -44,7 +44,7 @@ toBuildFacts(3, 7).
 toBuildFacts(4, 9).
 
 % Start Azul Round with N players
-startAzulRound(_) :-
+startAzulRound(_) :- % Someone have a row in the wall completed
     findall(
         PlayerId, 
         (
@@ -58,7 +58,11 @@ startAzulRound(_) :-
     length(Enders, Len),
     Len =\= 0,
     Enders=[First|_],
-    format("El juego termina pues los jugadores ~a han completado una fila~n", [First]),
+    format("El juego termina pues el jugador ~a ha completado una fila.~n", [First]),
+    !.
+startAzulRound(_) :- % The bag is empty so no more rounds are posible
+    bag([]),
+    format("El juego termina pues se han acabado las fichas.~n", _),
     !.
 startAzulRound(CantPlayers) :-
     format("Empezando Nueva Ronda: ~n",_),

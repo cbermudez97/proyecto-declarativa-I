@@ -44,13 +44,26 @@ getTile(T) :-
     retract(bag(B)),
     assert(bag(BR)).
 
-% Build a factory in factory(I, [ F1, F2, F3, F4]).
+% Build a factory in factory(I, [ F1, F2, F3, F4]) of with less tiles.
+buildFact(_, []) :-
+    bag([]),
+    !.
+buildFact(FactId, Bag) :-
+    bag(Bag),
+    length(Bag, L),
+    L < 4,
+    L > 0,
+    assert(factory(FactId, Bag)),
+    retract(bag(Bag)),
+    assert(bag([])),
+    !.
 buildFact(I, [F1, F2, F3, F4]) :-
     getTile(F1),
     getTile(F2),
     getTile(F3),
     getTile(F4),
-    assert(factory(I, [F1, F2, F3, F4])).
+    assert(factory(I, [F1, F2, F3, F4])),
+    !.
 
 % Build N factories
 buildFacts(0) :- !.
