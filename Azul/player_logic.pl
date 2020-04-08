@@ -65,8 +65,16 @@ getFirstMove(PlayerId, Move, Especial) :-
     ),
     buildMove(PlayerId, RawMove, Move, Especial),
     !.
+% Posible Good Move
+getPosBestMove(PlayerId, Move, Especial) :-
+    false,
+    !.
+
 
 % Generic Move provider, change it to follow a different Strategy
+playerMove(PlayerId, Move, Especial) :-
+    getPosBestMove(PlayerId, Move, Especial),
+    !.
 playerMove(PlayerId, Move, Especial) :-
     getFirstMove(PlayerId, Move, Especial),
     !.
