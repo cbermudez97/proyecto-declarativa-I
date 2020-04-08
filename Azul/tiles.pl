@@ -145,11 +145,11 @@ moveCenter(T, C, F) :-
 % Print Center
 print_center :-
     center([]),
-    format("Center [].~n", _),
+    format("Centro [].~n", _),
     !.
 print_center :-
     center([First|Center]),
-    format("Center [~a", [First]),
+    format("Centro [~a", [First]),
     findall((",~a", [X]), member(X,Center), Elems),
     write_lines(Elems),
     format("].~n", _),

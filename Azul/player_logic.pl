@@ -93,6 +93,12 @@ getCompleteFitMove(PlayerId, Move, Especial) :-
     !.
 
 % Generate Best Positive Move
+findBestofTheBest(BestScore, List, (RawData, Row)) :-
+    member(((RawData, Row), BestScore), List),
+    member(((_, Row2), BestScore), List),
+    Row > Row2,
+    !.
+
 getBestPosMove(PlayerId, Move, Especial) :-
     getAllMoves(PossiblePlays),
     findall(
@@ -110,7 +116,8 @@ getBestPosMove(PlayerId, Move, Especial) :-
         RawMoves
         ),
         sort(2, @>=, RawMoves, Sorted),
-        [(RawMove, _)|_]=Sorted,
+        [(_, BestScore)|_]=Sorted,
+        findBestofTheBest(BestScore, Sorted, RawMove),
         buildMove(PlayerId, RawMove, Move, Especial),
     !.
 
