@@ -165,9 +165,16 @@ getBonusScore(R, T, W, S) :-
     !.
 
 % Calculate Total score when inserting tile T in row R of wall W
+getNormalScore(1, 1, 1) :-
+    !.
+getNormalScore(Score1, Score2, ScoreFinal) :-
+    ScoreFinal is Score1 + Score2,
+    !.
+
 calculateScore(R, T, W, S) :-
     getRowScore(R, T, W, S1),
     getColumnScore(R, T, W, S2),
+    getNormalScore(S1, S2, S4), % Sum only 1 if is alone on the wall else sum two
     getBonusScore(R, T, W, S3),
-    S is S1 + S2 + S3, 
+    S is S4 + S3, 
     !.
