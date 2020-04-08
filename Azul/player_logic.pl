@@ -1,5 +1,11 @@
 :-[player].
 
+% Best Fit Metric
+calculeMetricCompleteFit(PlayerId, Row, Type, Metric) :-
+    player(PlayerId,_,_,_,_,_,_,_,Wall),
+    calculateScore(Row, Type, Wall, Metric),
+    !.
+
 % Get Player First Posible Move
 getImpData(( _, Type, Cant), (Type, Cant)) :-
     !.
@@ -66,14 +72,30 @@ getFirstMove(PlayerId, Move, Especial) :-
     buildMove(PlayerId, RawMove, Move, Especial),
     !.
 % Posible Good Move
-getPosBestMove(PlayerId, Move, Especial) :-
-    false,
+getCompleteFitMove(PlayerId, Move, Especial) :-
+    getAllMoves(PossiblePlays),
+    findall(
+        ((Y, Row), Metric),
+        (
+            member(Y,PossiblePlays),
+            member(Row, [1, 2, 3, 4, 5]), 
+            getImpData(Y, (Type, Cant)),
+            checkValidMove(PlayerId, Row, Type, Cant),
+            getPlayerRow(PlayerId, Row, ActRow), 
+            getNewRow(Row, ActRow, (Type, Cant), (Type, Row), (Type, 0)), % Make sure the move complete the Row
+            calculeMetricCompleteFit(PlayerId, Row, Type, Metric)
+        ), 
+        RawMoves
+        ),
+        sort(2, @>=, RawMoves, Sorted),
+        [(RawMove, _)|_]=Sorted,
+        buildMove(PlayerId, RawMove, Move, Especial),
     !.
 
 
 % Generic Move provider, change it to follow a different Strategy
 playerMove(PlayerId, Move, Especial) :-
-    getPosBestMove(PlayerId, Move, Especial),
+    getCompleteFitMove(PlayerId, Move, Especial),
     !.
 playerMove(PlayerId, Move, Especial) :-
     getFirstMove(PlayerId, Move, Especial),
