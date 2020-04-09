@@ -92,3 +92,7 @@ La partida termina en la ronda en la que un jugador consigue completar una o má
 * 2 Puntos por cada fila completa.
 
 El jugador con más puntos se proclama vencedor. En caso de empate, el jugador con más filas completadas será el ganador. Si la igualdad permanece, se comparte la victoria.
+
+## Implementación
+
+La implementación se ha dividido en tres componentes principales. La primera componente es la encargada de manejar los conceptos las losas, de la bolsa, las fábricas, el centro de la mesa y la tapa de la caja. La segunda componente es la encargada de manejar los conceptos de jugador, sus filas de preparación, su fila de piso y su muro. Por último, la tercera componente es la encargada de utilizando las dos anteriores simular el juego según la estrategia implementada.
