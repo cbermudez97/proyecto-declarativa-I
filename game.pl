@@ -94,7 +94,7 @@ startAzulRound(CantPlayers) :-
 
 % Start Azul Game with N players
 startAzulGame(CantPlayers) :-
-    format("Empazando juego de Azul con ~a jugadores!~n", [CantPlayers]),
+    format("Empezando juego de Azul con ~a jugadores!~n", [CantPlayers]),
     erase_players,
     createPlayers(CantPlayers),
     update_first(1), % Always player 1 starts
