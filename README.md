@@ -136,3 +136,849 @@ Es necesario tener instalado `swi-prolog` para utilizar el simulador. Si se encu
 ### Correr simulación
 
 Una vez cumplidos los requerimientos para correr una simulación debe ejecutar el comando `swipl game.pl` en la raíz del simulador. Luego dentro del entorno de `swi-prolog` debe introducir `startAzulGame(n).`, `n` representa la cantidad de jugadores con que se desea correr la simulación, siendo válido de `2` a `4` jugadores. El resultado de la simulación se mostrará en la consola mediante la descripción de cada jugada realizada y el estado resultante después de realizada esta, hasta la finalización del juego que se muestran los puntos obtenidos por cada jugador.
+
+## Ejemplo de Simulación
+
+```prolog
+Empezando juego de Azul con 4 jugadores!
+Empezando Nueva Ronda:
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [blanco,rojo,negro,rojo].
+Factoria #2 : [amarillo,azul,negro,azul].
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #4 : [blanco,azul,blanco,blanco].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Factoria #9 : [negro,amarillo,amarillo,amarillo].
+Centro [especial].
+Jugador 1 juega 2 fichas de tipo rojo en la fila 2 desde la Factoría 1
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #2 : [amarillo,azul,negro,azul].
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #4 : [blanco,azul,blanco,blanco].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Factoria #9 : [negro,amarillo,amarillo,amarillo].
+Centro [especial,blanco,negro].
+Jugador 2 juega 2 fichas de tipo azul en la fila 2 desde la Factoría 2
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #4 : [blanco,azul,blanco,blanco].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Factoria #9 : [negro,amarillo,amarillo,amarillo].
+Centro [especial,blanco,negro,amarillo,negro].
+Jugador 3 juega 2 fichas de tipo negro en la fila 2 desde el centro
+El jugador 3 tomo la ficha especial y sera el primero en la siguiente Ronda.
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #4 : [blanco,azul,blanco,blanco].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Factoria #9 : [negro,amarillo,amarillo,amarillo].
+Centro [blanco,amarillo].
+Jugador 4 juega 3 fichas de tipo blanco en la fila 3 desde la Factoría 4
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Factoria #9 : [negro,amarillo,amarillo,amarillo].
+Centro [blanco,amarillo,azul].
+Jugador 1 juega 1 fichas de tipo blanco en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Factoria #9 : [negro,amarillo,amarillo,amarillo].
+Centro [amarillo,azul].
+Jugador 2 juega 3 fichas de tipo amarillo en la fila 3 desde la Factoría 9
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [amarillo,azul,negro].
+Jugador 3 juega 1 fichas de tipo amarillo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [azul,negro].
+Jugador 4 juega 1 fichas de tipo azul en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [negro].
+Jugador 1 juega 1 fichas de tipo negro en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #3 : [amarillo,rojo,blanco,azul].
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [].
+Jugador 2 juega 1 fichas de tipo amarillo en la fila 1 desde la Factoría 3
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [rojo,blanco,azul].
+Jugador 3 juega 1 fichas de tipo rojo en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [blanco,azul].
+Jugador 4 juega 1 fichas de tipo blanco en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [azul].
+Jugador 1 juega 1 fichas de tipo azul en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #5 : [rojo,amarillo,negro,amarillo].
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [].
+Jugador 2 juega 1 fichas de tipo rojo en la fila 5 desde la Factoría 5
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Factoria #8 : [rojo,amarillo,negro,rojo].
+Centro [amarillo,amarillo,negro].
+Jugador 3 juega 2 fichas de tipo rojo en la fila 3 desde la Factoría 8
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Centro [amarillo,amarillo,negro,amarillo,negro].
+Jugador 4 juega 3 fichas de tipo amarillo en la fila 4 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Factoria #7 : [azul,amarillo,rojo,azul].
+Centro [negro,negro].
+Jugador 1 juega 2 fichas de tipo azul en la fila 3 desde la Factoría 7
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Centro [negro,negro,amarillo,rojo].
+Jugador 2 juega 1 fichas de tipo rojo en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Centro [negro,negro,amarillo].
+Jugador 3 juega 1 fichas de tipo amarillo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Centro [negro,negro].
+Jugador 4 juega 2 fichas de tipo negro en la fila 2 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #6 : [negro,amarillo,rojo,azul].
+Centro [].
+Jugador 1 juega 1 fichas de tipo negro en la fila 5 desde la Factoría 6
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Centro [amarillo,rojo,azul].
+Jugador 2 juega 1 fichas de tipo rojo en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Centro [amarillo,azul].
+Jugador 3 juega 1 fichas de tipo amarillo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Centro [azul].
+Jugador 4 juega 1 fichas de tipo azul en la fila 1 desde el centro
+Fin del Turno.
+No se pueden realizar jugadas.
+Fin de la Ronda.
+Preparando Siguiente Ronda.
+Fin de la Preparación.
+Empezando Nueva Ronda:
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #3 : [negro,azul,negro,blanco].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #6 : [rojo,rojo,blanco,blanco].
+Factoria #7 : [azul,rojo,blanco,azul].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [especial].
+Jugador 3 juega 1 fichas de tipo blanco en la fila 1 desde la Factoría 3
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #6 : [rojo,rojo,blanco,blanco].
+Factoria #7 : [azul,rojo,blanco,azul].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [especial,negro,negro,azul].
+Jugador 4 juega 2 fichas de tipo rojo en la fila 2 desde la Factoría 6
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #7 : [azul,rojo,blanco,azul].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [especial,negro,negro,azul,blanco,blanco].
+Jugador 1 juega 2 fichas de tipo negro en la fila 2 desde el centro
+El jugador 1 tomo la ficha especial y sera el primero en la siguiente Ronda.
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #7 : [azul,rojo,blanco,azul].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul,blanco,blanco].
+Jugador 2 juega 2 fichas de tipo blanco en la fila 2 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #7 : [azul,rojo,blanco,azul].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul].
+Jugador 3 juega 2 fichas de tipo azul en la fila 2 desde la Factoría 7
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul,rojo,blanco].
+Jugador 4 juega 1 fichas de tipo blanco en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #2 : [azul,negro,amarillo,amarillo].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul,rojo].
+Jugador 1 juega 1 fichas de tipo negro en la fila 1 desde la Factoría 2
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul,rojo,azul,amarillo,amarillo].
+Jugador 2 juega 1 fichas de tipo rojo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #1 : [azul,rojo,azul,azul].
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul,azul,amarillo,amarillo].
+Jugador 3 juega 3 fichas de tipo azul en la fila 3 desde la Factoría 1
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [azul,azul,amarillo,amarillo,rojo].
+Jugador 4 juega 2 fichas de tipo azul en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #4 : [negro,negro,rojo,negro].
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [amarillo,amarillo,rojo].
+Jugador 1 juega 3 fichas de tipo negro en la fila 5 desde la Factoría 4
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [amarillo,amarillo,rojo,rojo].
+Jugador 2 juega 2 fichas de tipo rojo en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [amarillo,amarillo].
+Jugador 3 juega 2 fichas de tipo amarillo en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #5 : [rojo,azul,negro,negro].
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [].
+Jugador 4 juega 1 fichas de tipo azul en la fila 3 desde la Factoría 5
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [rojo,negro,negro].
+Jugador 1 juega 1 fichas de tipo rojo en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [negro,negro].
+Jugador 2 juega 2 fichas de tipo negro en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #8 : [rojo,negro,blanco,amarillo].
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [].
+Jugador 3 juega 1 fichas de tipo amarillo en la fila 5 desde la Factoría 8
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [rojo,negro,blanco].
+Jugador 4 juega 1 fichas de tipo rojo en la fila 2 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [negro,blanco].
+Jugador 1 juega 1 fichas de tipo negro en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #9 : [negro,amarillo,amarillo,blanco].
+Centro [blanco].
+Jugador 2 juega 1 fichas de tipo negro en la fila 3 desde la Factoría 9
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Centro [blanco,amarillo,amarillo,blanco].
+Jugador 3 juega 2 fichas de tipo amarillo en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Centro [blanco,blanco].
+Jugador 4 juega 2 fichas de tipo blanco en la fila 1 desde el centro
+Fin del Turno.
+No se pueden realizar jugadas.
+Fin de la Ronda.
+Preparando Siguiente Ronda.
+Fin de la Preparación.
+Empezando Nueva Ronda:
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #2 : [azul,rojo,blanco,negro].
+Factoria #3 : [amarillo,amarillo,azul,rojo].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #6 : [blanco,amarillo,blanco,amarillo].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [especial].
+Jugador 1 juega 2 fichas de tipo amarillo en la fila 2 desde la Factoría 3
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #2 : [azul,rojo,blanco,negro].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #6 : [blanco,amarillo,blanco,amarillo].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [especial,azul,rojo].
+Jugador 2 juega 1 fichas de tipo azul en la fila 1 desde el centro
+El jugador 2 tomo la ficha especial y sera el primero en la siguiente Ronda.
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #2 : [azul,rojo,blanco,negro].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #6 : [blanco,amarillo,blanco,amarillo].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [rojo].
+Jugador 3 juega 2 fichas de tipo amarillo en la fila 2 desde la Factoría 6
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #2 : [azul,rojo,blanco,negro].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [rojo,blanco,blanco].
+Jugador 4 juega 1 fichas de tipo negro en la fila 1 desde la Factoría 2
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [rojo,blanco,blanco,azul,rojo,blanco].
+Jugador 1 juega 2 fichas de tipo rojo en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [blanco,blanco,blanco,azul].
+Jugador 2 juega 3 fichas de tipo blanco en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [azul].
+Jugador 3 juega 1 fichas de tipo azul en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #1 : [azul,azul,amarillo,rojo].
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [].
+Jugador 4 juega 2 fichas de tipo azul en la fila 2 desde la Factoría 1
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [amarillo,rojo].
+Jugador 1 juega 1 fichas de tipo rojo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #5 : [blanco,azul,blanco,negro].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [amarillo].
+Jugador 2 juega 1 fichas de tipo azul en la fila 1 desde la Factoría 5
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [amarillo,blanco,blanco,negro].
+Jugador 3 juega 1 fichas de tipo amarillo en la fila 4 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [blanco,blanco,negro].
+Jugador 4 juega 2 fichas de tipo blanco en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #4 : [blanco,rojo,blanco,rojo].
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [negro].
+Jugador 1 juega 2 fichas de tipo blanco en la fila 5 desde la Factoría 4
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [negro,rojo,rojo].
+Jugador 2 juega 2 fichas de tipo rojo en la fila 2 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [negro].
+Jugador 3 juega 1 fichas de tipo negro en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #7 : [blanco,negro,blanco,negro].
+Centro [].
+Jugador 4 juega 2 fichas de tipo blanco en la fila 5 desde la Factoría 7
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Centro [negro,negro].
+Jugador 1 juega 2 fichas de tipo negro en la fila 4 desde el centro
+Fin del Turno.
+No se pueden realizar jugadas.
+Fin de la Ronda.
+Preparando Siguiente Ronda.
+Fin de la Preparación.
+Empezando Nueva Ronda:
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #1 : [negro,blanco,blanco,negro].
+Factoria #2 : [azul,amarillo,blanco,negro].
+Factoria #3 : [amarillo,azul,rojo,negro].
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [especial].
+Jugador 2 juega 1 fichas de tipo negro en la fila 1 desde la Factoría 2
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #1 : [negro,blanco,blanco,negro].
+Factoria #3 : [amarillo,azul,rojo,negro].
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [especial,azul,amarillo,blanco].
+Jugador 3 juega 1 fichas de tipo rojo en la fila 1 desde la Factoría 3
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #1 : [negro,blanco,blanco,negro].
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [especial,azul,amarillo,blanco,amarillo,azul,negro].
+Jugador 4 juega 2 fichas de tipo amarillo en la fila 2 desde el centro
+El jugador 4 tomo la ficha especial y sera el primero en la siguiente Ronda.
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [negro,blanco,blanco,negro].
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul,blanco,negro].
+Jugador 1 juega 2 fichas de tipo blanco en la fila 2 desde la Factoría 1
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul,blanco,negro,negro,negro].
+Jugador 2 juega 2 fichas de tipo azul en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [blanco,negro,negro,negro].
+Jugador 3 juega 1 fichas de tipo blanco en la fila 2 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #4 : [rojo,amarillo,azul,blanco].
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [negro,negro,negro].
+Jugador 4 juega 1 fichas de tipo amarillo en la fila 1 desde la Factoría 4
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #5 : [amarillo,negro,azul,azul].
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [negro,negro,negro,rojo,azul,blanco].
+Jugador 1 juega 1 fichas de tipo amarillo en la fila 1 desde la Factoría 5
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [negro,negro,negro,rojo,azul,blanco,negro,azul,azul].
+Jugador 2 juega 4 fichas de tipo negro en la fila 4 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [rojo,azul,azul,azul,blanco].
+Jugador 3 juega 1 fichas de tipo rojo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #7 : [negro,negro,rojo,amarillo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul,azul,blanco].
+Jugador 4 juega 1 fichas de tipo amarillo en la fila 4 desde la Factoría 7
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul,azul,blanco,negro,negro,rojo].
+Jugador 1 juega 1 fichas de tipo blanco en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #6 : [amarillo,azul,amarillo,rojo].
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul,azul,negro,negro,rojo].
+Jugador 2 juega 2 fichas de tipo amarillo en la fila 2 desde la Factoría 6
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul,azul,negro,negro,rojo,azul,rojo].
+Jugador 3 juega 4 fichas de tipo azul en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [negro,negro,rojo,rojo].
+Jugador 4 juega 2 fichas de tipo negro en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #8 : [azul,azul,blanco,blanco].
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [rojo,rojo].
+Jugador 1 juega 2 fichas de tipo blanco en la fila 5 desde la Factoría 8
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [rojo,rojo,azul,azul].
+Jugador 2 juega 2 fichas de tipo rojo en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #9 : [blanco,negro,blanco,azul].
+Centro [azul,azul].
+Jugador 3 juega 1 fichas de tipo negro en la fila 3 desde la Factoría 9
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Centro [azul,azul,blanco,blanco,azul].
+Jugador 4 juega 3 fichas de tipo azul en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Centro [blanco,blanco].
+Jugador 1 juega 2 fichas de tipo blanco en la fila 3 desde el centro
+Fin del Turno.
+No se pueden realizar jugadas.
+Fin de la Ronda.
+Preparando Siguiente Ronda.
+Fin de la Preparación.
+Empezando Nueva Ronda:
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #1 : [rojo,rojo,blanco,rojo].
+Factoria #2 : [amarillo,rojo,negro,rojo].
+Factoria #3 : [rojo,azul,rojo,blanco].
+Factoria #4 : [rojo,azul,negro,amarillo].
+Centro [especial].
+Jugador 4 juega 1 fichas de tipo rojo en la fila 1 desde la Factoría 4
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #1 : [rojo,rojo,blanco,rojo].
+Factoria #2 : [amarillo,rojo,negro,rojo].
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [especial,azul,negro,amarillo].
+Jugador 1 juega 1 fichas de tipo azul en la fila 1 desde el centro
+El jugador 1 tomo la ficha especial y sera el primero en la siguiente Ronda.
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #1 : [rojo,rojo,blanco,rojo].
+Factoria #2 : [amarillo,rojo,negro,rojo].
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [negro,amarillo].
+Jugador 2 juega 1 fichas de tipo blanco en la fila 1 desde la Factoría 1
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #2 : [amarillo,rojo,negro,rojo].
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [negro,amarillo,rojo,rojo,rojo].
+Jugador 3 juega 1 fichas de tipo negro en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Factoria #2 : [amarillo,rojo,negro,rojo].
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [amarillo,rojo,rojo,rojo].
+Jugador 4 juega 1 fichas de tipo negro en la fila 3 desde la Factoría 2
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [amarillo,rojo,rojo,rojo,amarillo,rojo,rojo].
+Jugador 1 juega 5 fichas de tipo rojo en la fila 5 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [amarillo,amarillo].
+Jugador 2 juega 2 fichas de tipo amarillo en la fila 4 desde el centro
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Factoria #3 : [rojo,azul,rojo,blanco].
+Centro [].
+Jugador 3 juega 1 fichas de tipo azul en la fila 1 desde la Factoría 3
+Fin del Turno.
+Turno del Jugador 4.
+Estado de la Mesa:
+Centro [rojo,rojo,blanco].
+Jugador 4 juega 2 fichas de tipo rojo en la fila 1 desde el centro
+Fin del Turno.
+Turno del Jugador 1.
+Estado de la Mesa:
+Centro [blanco].
+Jugador 1 juega 1 fichas de tipo blanco en la fila 3 desde el centro
+Fin del Turno.
+Turno del Jugador 2.
+Estado de la Mesa:
+Centro [].
+Jugador 2 juega 1 fichas de tipo blanco en la fila 1 desde la Factoría 5
+Fin del Turno.
+Turno del Jugador 3.
+Estado de la Mesa:
+Centro [amarillo].
+Jugador 3 juega 1 fichas de tipo amarillo en la fila 4 desde el centro
+Fin del Turno.
+No se pueden realizar jugadas.
+Fin de la Ronda.
+Preparando Siguiente Ronda.
+Fin de la Preparación.
+El juego termina pues el jugador 4 ha completado una fila.
+Resultados:
+Jugador 2 : 60
+Jugador 1 : 48
+Jugador 4 : 38
+Jugador 3 : 23
+true.
+```
