@@ -123,6 +123,10 @@ El archivo `player_logic.pl` contiene predicados para simular la estrategía (qu
 
 El archivo `game.pl` contiene predicados para simular las rondas del juego, la rotación de los jugadores y la condición de finalización del juego.
 
+### Estrategia implementada
+
+La estrategía implementada para escoger la jugada fue calcular los puntos que se obtenían con cada jugada posible, escogiendo la jugada con la cual se obtenía mayor cantidad de puntos. Si coincide que con más de una jugada se obtenine la máxima cantidad de puntos se escoge la jugada que implique la utilización de la fila de preparación con mayor tamaño.
+
 ## Manual del Simulador
 
 ### Requerimientos
