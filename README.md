@@ -114,3 +114,11 @@ De la segunda componente forman parte los archivos `player.pl`, `wall.pl` y `uti
 El archivo `wall.pl` contiene predicados para la definición del muro (tipo de losa que debe ir en cada casilla del muro), para la inserción de losas en el muro, para obtener las losas del muro según varios criterios y para calcular los puntos al insertar una losa en el muro.
 
 El archivo `player.pl` continue predicados para la inicialización de los estados de los jugadores, para cambiar el jugador que le toca jugar, para actualizar sus filas de preparación, para actualizar su fila de piso, para actualizar su muro, para calcular los puntos cuando se inseta una losa determina en una de las filas de preparación, para imprimir el estado de cada jugador, etc.
+
+### Tercera Componente
+
+De la tercera componente forman parte los archivos `game.pl` y `player_logic.pl`.
+
+El archivo `player_logic.pl` contiene predicados para simular la estrategía (que será explicada luego) utilizada por los jugadores basada en una métrica calculada para cada posible jugada escogiendo la de mayor valor resultado de aplicarle la métrica para realizarse.
+
+El archivo `game.pl` contiene predicados para simular las rondas del juego, la rotación de los jugadores y la condición de finalización del juego.
