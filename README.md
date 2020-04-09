@@ -25,3 +25,14 @@ El concepto básico es que **un jugador, al tomar piezas, siempre deberá tomar 
 * Por último, en la fila inferior, encontramos una fila de casillas con un valor negativo que aumenta en una unidad cada dos casilla. En esta fila se irán colocando los azulejos que no se puedan/quieran colocar en alguna de las filas de la zona de preparación.
 
 **Ficha de jugador inicial:** Determina que jugador será el primero en escoger en una ronda. Esta ficha, además, funcionará como un azulejo pero que siempre será colocado en la fila de penalización.
+
+### Preparación de la Partida
+
+1. Cada jugador recibe un tablero personal y un marcador de puntuación que colocará en la casilla de valor 0.
+2. Se coloca, formando un círculo, un número de losetas de fábrica dependiente del número de jugadores:
+    * 2 Jugadores: 5 Losetas de Fábrica.
+    * 3 Jugadores: 7 Losetas de Fábrica.
+    * 4 Jugadores: 9 Losetas de Fábrica.
+3. Se introducen en la bolsa los 100 azulejos (20 de cada color) y se mezclan bien.
+4. Se rellena cada loseta de fábrica con 4 piezas extraídas de la bolsa al azar.
+5. Se escoge al jugador inicial del partido de forma aleatoria, en las siguientes rondas el jugador inicial, es quien escoja azulejos por priera vez del centro y no de las fábricas, y este obtendrá la ficha de jugador inicial que debe ponerse en el suelo del tablero, restando puntos.
