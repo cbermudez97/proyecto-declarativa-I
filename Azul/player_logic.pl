@@ -1,76 +1,65 @@
-:-[player].
+:- [player].
 
 % Best Fit Metric
 calculeMetricCompleteFit(PlayerId, Row, Type, Metric) :-
-    player(PlayerId,_,_,_,_,_,_,_,Wall),
-    calculateScore(Row, Type, Wall, Metric),
-    !.
+    player(PlayerId,
+           _,
+           _,
+           _,
+           _,
+           _,
+           _,
+           _,
+           Wall),
+    calculateScore(Row, Type, Wall, Metric), !.
 
 % Get Player First Posible Move
-getImpData(( _, Type, Cant), (Type, Cant)) :-
-    !.
-getImpData((Type, Cant), (Type, Cant)) :-
-    !.
+getImpData((_, Type, Cant),  (Type, Cant)) :- !.
+getImpData((Type, Cant),  (Type, Cant)) :- !.
 
-buildMove(PlayerId, ((FactId, Type, Cant), -1), Move, no) :-
-    Move=(
-            moveTile((FactId, Type, Cant), no),
-            format("Jugador ~a descarta ~a fichas de tipo ~a desde la Factoría ~a~n", [PlayerId, Cant, Type, FactId]),
-            addTilesToRow(PlayerId, -1, Type, Cant)
-            
-        ),
-    !.
+buildMove(PlayerId,  ((FactId, Type, Cant), -1), Move, no) :-
+    Move=(moveTile((FactId, Type, Cant), no), format("Jugador ~a descarta ~a fichas de tipo ~a desde la Factoría ~a~n", [PlayerId, Cant, Type, FactId]), addTilesToRow(PlayerId, -1, Type, Cant)), !.
 
-buildMove(PlayerId, ((FactId, Type, Cant), Row), Move, no) :-
-    Move=(
-            moveTile((FactId, Type, Cant), no),
-            format("Jugador ~a juega ~a fichas de tipo ~a en la fila ~a desde la Factoría ~a~n", [PlayerId, Cant, Type, Row, FactId]),
-            addTilesToRow(PlayerId, Row, Type, Cant)
-            
-        ),
-    !.
+buildMove(PlayerId,  ((FactId, Type, Cant), Row), Move, no) :-
+    Move=(moveTile((FactId, Type, Cant), no), format("Jugador ~a juega ~a fichas de tipo ~a en la fila ~a desde la Factoría ~a~n", [PlayerId, Cant, Type, Row, FactId]), addTilesToRow(PlayerId, Row, Type, Cant)), !.
 
-buildMove(PlayerId, ((Type, Cant), -1), Move, Especial) :-
-    Move=(
-            moveTile((Type, Cant), Especial),
-            format("Jugador ~a descarta ~a fichas de tipo ~a desde el centro~n", [PlayerId, Cant, Type]),
-            addTilesToRow(PlayerId, -1, Type, Cant)
-        ),
-    !.
+buildMove(PlayerId,  ((Type, Cant), -1), Move, Especial) :-
+    Move=(moveTile((Type, Cant), Especial), format("Jugador ~a descarta ~a fichas de tipo ~a desde el centro~n", [PlayerId, Cant, Type]), addTilesToRow(PlayerId, -1, Type, Cant)), !.
 
-buildMove(PlayerId, ((Type, Cant), Row), Move, Especial) :-
-    Move=(
-            moveTile((Type, Cant), Especial),
-            format("Jugador ~a juega ~a fichas de tipo ~a en la fila ~a desde el centro~n", [PlayerId, Cant, Type, Row]),
-            addTilesToRow(PlayerId, Row, Type, Cant)
-        ),
-    !.
+buildMove(PlayerId,  ((Type, Cant), Row), Move, Especial) :-
+    Move=(moveTile((Type, Cant), Especial), format("Jugador ~a juega ~a fichas de tipo ~a en la fila ~a desde el centro~n", [PlayerId, Cant, Type, Row]), addTilesToRow(PlayerId, Row, Type, Cant)), !.
 
 % Check if move is Valid for a Player
-checkValidMove( _, -1, _, _) :-
-    !.
+checkValidMove(_, -1, _, _) :- !.
 checkValidMove(PlayerId, Row, Type, Cant) :-
-    Row =\= -1,
+    Row=\= -1,
     getPlayerRow(PlayerId, Row, ActRow),
-    player(PlayerId,_,_,_,_,_,_,_,Wall),
+    player(PlayerId,
+           _,
+           _,
+           _,
+           _,
+           _,
+           _,
+           _,
+           Wall),
     not(member((Row, _, Type), Wall)),
-    getNewRow(Row, ActRow, (Type, Cant), _, _),
-    !.
+    getNewRow(Row,
+              ActRow,
+              (Type, Cant),
+              _,
+              _), !.
 
-getFirstMove(PlayerId, Move, Especial) :- 
+getFirstMove(PlayerId, Move, Especial) :-
     getAllMoves(PossiblePlays),
-    findall(
-        (Y, Row),
-        (
-            member(Y,PossiblePlays),
-            member(Row, [1, 2, 3, 4, 5, -1]), 
-            getImpData(Y, (Type, Cant)),
-            checkValidMove(PlayerId, Row, Type, Cant)
-        ), 
-        [RawMove|_]
-    ),
-    buildMove(PlayerId, RawMove, Move, Especial),
-    !.
+    findall((Y, Row),
+            ( member(Y, PossiblePlays),
+              member(Row, [1, 2, 3, 4, 5, -1]),
+              getImpData(Y,  (Type, Cant)),
+              checkValidMove(PlayerId, Row, Type, Cant)
+            ),
+            [RawMove|_]),
+    buildMove(PlayerId, RawMove, Move, Especial), !.
 % Posible Good Move
 getCompleteFitMove(PlayerId, Move, Especial) :-
     getAllMoves(PossiblePlays),
@@ -93,10 +82,21 @@ getCompleteFitMove(PlayerId, Move, Especial) :-
     !.
 
 % Generate Best Positive Move
-findBestofTheBest(BestScore, List, (RawData, Row)) :-
-    member(((RawData, Row), BestScore), List),
-    member(((_, Row2), BestScore), List),
-    Row > Row2,
+findBestofTheBest(BestScore, List, SolData) :-
+    findall(
+        (Data, BestScore),
+        (
+            member((Data, BestScore), List),
+            (_, Row)=Data, 
+            findall(
+                ((_, Row2), BestScore),
+                (member(((_, Row2), BestScore), List),
+                Row2 > Row),
+                []
+            ) 
+        ),
+        [(SolData, BestScore)|_]
+    ),
     !.
 
 getBestPosMove(PlayerId, Move, Especial) :-
@@ -114,11 +114,11 @@ getBestPosMove(PlayerId, Move, Especial) :-
             retract(player(-1, Metric,_,_,_,_,_,_,_))
         ), 
         RawMoves
-        ),
-        sort(2, @>=, RawMoves, Sorted),
-        [(_, BestScore)|_]=Sorted,
-        findBestofTheBest(BestScore, Sorted, RawMove),
-        buildMove(PlayerId, RawMove, Move, Especial),
+    ),
+    sort(2, @>=, RawMoves, Sorted),
+    [(_, BestScore)|_]=Sorted,
+    findBestofTheBest(BestScore, Sorted, RawMove),
+    buildMove(PlayerId, RawMove, Move, Especial),
     !.
 
 
