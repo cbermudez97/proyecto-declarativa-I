@@ -26,7 +26,7 @@ El concepto básico es que **un jugador, al tomar piezas, siempre deberá tomar 
 * A la derecha encontramos el muro, compuesto por una cuadrícula de cinco filas y cinco columnas. En cada casilla de cada fila encontraremos impreso un tipo de azulejo, de forma que en ninguna fila y en ninguna columna se repite un mismo tipo.
 * Por último, en la fila inferior, encontramos una fila de casillas con un valor negativo que aumenta en una unidad cada dos casilla. En esta fila se irán colocando los azulejos que no se puedan/quieran colocar en alguna de las filas de la zona de preparación.
 
-**Ficha de jugador inicial:** Determina que jugador será el primero en escoger en una ronda. Esta ficha, además, funcionará como un azulejo pero que siempre será colocado en la fila de penalización.
+**Ficha de jugador inicial:** Determina qué jugador será el primero en escoger en una ronda. Esta ficha, además, funcionará como un azulejo pero que siempre será colocado en la fila de penalización.
 
 ### Preparación de la Partida
 
@@ -37,7 +37,7 @@ El concepto básico es que **un jugador, al tomar piezas, siempre deberá tomar 
     * 4 Jugadores: 9 Losetas de Fábrica.
 3. Se introducen en la bolsa los 100 azulejos (20 de cada color) y se mezclan bien.
 4. Se rellena cada loseta de fábrica con 4 piezas extraídas de la bolsa al azar.
-5. Se escoge al jugador inicial del partido de forma aleatoria, en las siguientes rondas el jugador inicial, es quien escoja azulejos por priera vez del centro y no de las fábricas, y este obtendrá la ficha de jugador inicial que debe ponerse en el suelo del tablero, restando puntos.
+5. Se escoge al jugador inicial del partido de forma aleatoria, en las siguientes rondas el jugador inicial, es quien escoja azulejos por primera vez del centro y no de las fábricas, y éste obtendrá la ficha de jugador inicial que debe ponerse en el suelo del tablero, restando puntos.
 
 ### Desarrollo de la Partida
 
@@ -72,7 +72,7 @@ La fase finaliza tras el turno del jugador que ha tomado el último azulejo en j
 Esta fase es automática y se puede desarrollar en paralelo. Cada jugador transporta un azulejo de cada una de las filas completadas al muro, comenzando por la fila superior y continuando hacia abajo. Por cada azulejo colocado en el muro se anotan puntos en función de los azulejos directamente conectados en la fila y/o columna correspondiente:
 
 * Si el azulejo no se coloca adyacente a ningún otro azulejo de forma ortogonal, se anotará 1 punto.
-* Si el azulejo se coloca adyacente al menos un azulejo, se cuentan cuantos azulejos directamente conectados en línea recta en la fila y/o columna hay. Por cada azulejo en cada una de ambas rectas se anota un punto, incluyendo al azulejo recién colocado. Por ejemplo, si el azulejo colocado tiene 1 azulejo adyacente en la columna y 1 azulejo adyacente en la fila, el jugador anota 4 puntos (2 azulejos en la fila y 2 azulejos en la columna).
+* Si el azulejo se coloca adyacente al menos un azulejo, se cuentan cuántos azulejos directamente conectados en línea recta en la fila y/o columna hay. Por cada azulejo en cada una de ambas rectas se anota un punto, incluyendo al azulejo recién colocado. Por ejemplo, si el azulejo colocado tiene 1 azulejo adyacente en la columna y 1 azulejo adyacente en la fila, el jugador anotó 4 puntos (2 azulejos en la fila y 2 azulejos en la columna).
 * El resto de azulejos de cada fila completada se colocan en la tapa de la caja (visibles para todos los jugadores).
 * Los azulejos que se encuentran en filas incompletas, permanecen en su posición para la siguiente ronda.
 * Por último, los jugadores restan puntos según las losetas que se encuentran en su fila de suelo, retrasando su marcador tantos puntos como indique cada casilla ocupada.
@@ -81,9 +81,9 @@ La fase finaliza una vez todos los jugadores han anotado sus puntos.
 
 #### Fase III: Mantenimiento
 
-Si la partida no ha finalizado, se prepara la siguiente ronda, volviendo a sacar de la bolsa 4 azulejos por fábrica. Si la bolsa quedase vacía, en ese momento se reintroducirían todos los azulejos que se encuentran en la tapa de la caja a la bolsa y se continuaría reponiendo.
+Si la partida no ha finalizado, se prepara la siguiente ronda, volviendo a sacar de la bolsa 4 azulejos por fábrica. Si la bolsa quedase vacía, en ese momento se re-introducirán todos los azulejos que se encuentran en la tapa de la caja a la bolsa y se continuaría reponiendo.
 
-Puede darse el caso de que, aun reintroduciendo los azulejos de la caja no haya azulejos suficientes para reponer todas las fábricas. En este caso se repondría hasta donde fuese posible.
+Puede darse el caso de que, aún reintroduciendo los azulejos de la caja no haya azulejos suficientes para reponer todas las fábricas. En este caso se repondrá hasta donde fuese posible.
 
 ### Fin de la Partida
 
@@ -105,7 +105,7 @@ De la primera componente forman parte los archivos `tiles.pl` y `utils.pl`.
 
 El archivo `utils.pl` contiene predicados utiles para trabajar con listas principalmente y se utiliza en las restantes componentes también por lo que solo será mencionado en esta.
 
-El archivo `tiles.pl` contiene predicados para la definición de los tipos de losas y la cantidad de cada tipo al empezar el juego. También tiene predicados para iniciar el estado de la bolsa, llenar las fábricas posibles con las losas que esten en la bolsa y colocar la losa especial (ficha de jugador inicial) en el centro de la mesa cuando sea necesario. Además de los predicados para escoger las losas de una de las fábricas o del centro de la mesa y de imprimir tanto el estado de cada fábrica como el del centro de la mesa.
+El archivo `tiles.pl` contiene predicados para la definición de los tipos de losas y la cantidad de cada tipo al empezar el juego. También tiene predicados para iniciar el estado de la bolsa, llenar las fábricas posibles con las losas que estén en la bolsa y colocar la losa especial (ficha de jugador inicial) en el centro de la mesa cuando sea necesario. Además de los predicados para escoger las losas de una de las fábricas o del centro de la mesa y de imprimir tanto el estado de cada fábrica como el del centro de la mesa.
 
 ### Segunda Componente
 
@@ -113,19 +113,19 @@ De la segunda componente forman parte los archivos `player.pl`, `wall.pl` y `uti
 
 El archivo `wall.pl` contiene predicados para la definición del muro (tipo de losa que debe ir en cada casilla del muro), para la inserción de losas en el muro, para obtener las losas del muro según varios criterios y para calcular los puntos al insertar una losa en el muro.
 
-El archivo `player.pl` continue predicados para la inicialización de los estados de los jugadores, para cambiar el jugador que le toca jugar, para actualizar sus filas de preparación, para actualizar su fila de piso, para actualizar su muro, para calcular los puntos cuando se inseta una losa determina en una de las filas de preparación, para imprimir el estado de cada jugador, etc.
+El archivo `player.pl` continue predicados para la inicialización de los estados de los jugadores, para cambiar el jugador que le toca jugar, para actualizar sus filas de preparación, para actualizar su fila de piso, para actualizar su muro, para calcular los puntos cuando se inserta una losa determina en una de las filas de preparación, para imprimir el estado de cada jugador, etc.
 
 ### Tercera Componente
 
 De la tercera componente forman parte los archivos `game.pl` y `player_logic.pl`.
 
-El archivo `player_logic.pl` contiene predicados para simular la estrategía (que será explicada luego) utilizada por los jugadores basada en una métrica calculada para cada posible jugada escogiendo la de mayor valor resultado de aplicarle la métrica para realizarse.
+El archivo `player_logic.pl` contiene predicados para simular la estrategia (que será explicada luego) utilizada por los jugadores basada en una métrica calculada para cada posible jugada escogiendo la de mayor valor resultado de aplicarle la métrica para realizarse.
 
 El archivo `game.pl` contiene predicados para simular las rondas del juego, la rotación de los jugadores y la condición de finalización del juego.
 
 ### Estrategia implementada
 
-La estrategía implementada para escoger la jugada fue calcular los puntos que se obtenían con cada jugada posible, escogiendo la jugada con la cual se obtenía mayor cantidad de puntos. Si coincide que con más de una jugada se obtenine la máxima cantidad de puntos se escoge la jugada que implique la utilización de la fila de preparación con mayor tamaño.
+La estrategia implementada para escoger la jugada fue calcular los puntos que se obtenían con cada jugada posible, escogiendo la jugada con la cual se obtenía mayor cantidad de puntos. Si coincide que con más de una jugada se obtiene la máxima cantidad de puntos se escoge la jugada que implique la utilización de la fila de preparación con mayor tamaño.
 
 ## Manual del Simulador
 
@@ -135,4 +135,4 @@ Es necesario tener instalado `swi-prolog` para utilizar el simulador. Si se encu
 
 ### Correr simulación
 
-Una vez cumplidos los requerimientos para correr una simulación debe ejecutar el comando `swipl game.pl` en la raíz del simulador. Luego dentro del entorno de `swi-prolog` debe introducir `startAzulGame(n).`, `n` representa la cantidad de jugadores con que se desea correr la simulación, siendo valido de `2` a `4` jugadores. El resultado de la simulación se mostrará en la consola mediante la descripción de cada jugada realizada y el estado resultante después de realizada esta, hasta la finalización del juego que se muestran los puntos obtenidos por cada jugador.
+Una vez cumplidos los requerimientos para correr una simulación debe ejecutar el comando `swipl game.pl` en la raíz del simulador. Luego dentro del entorno de `swi-prolog` debe introducir `startAzulGame(n).`, `n` representa la cantidad de jugadores con que se desea correr la simulación, siendo válido de `2` a `4` jugadores. El resultado de la simulación se mostrará en la consola mediante la descripción de cada jugada realizada y el estado resultante después de realizada esta, hasta la finalización del juego que se muestran los puntos obtenidos por cada jugador.
