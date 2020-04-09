@@ -82,3 +82,13 @@ La fase finaliza una vez todos los jugadores han anotado sus puntos.
 Si la partida no ha finalizado, se prepara la siguiente ronda, volviendo a sacar de la bolsa 4 azulejos por fábrica. Si la bolsa quedase vacía, en ese momento se reintroducirían todos los azulejos que se encuentran en la tapa de la caja a la bolsa y se continuaría reponiendo.
 
 Puede darse el caso de que, aun reintroduciendo los azulejos de la caja no haya azulejos suficientes para reponer todas las fábricas. En este caso se repondría hasta donde fuese posible.
+
+### Fin de la Partida
+
+La partida termina en la ronda en la que un jugador consigue completar una o más filas, o los azulejos se agotaron. A los puntos acumulados se suman los siguientes:
+
+* 10 Puntos por cada color de azulejo que se haya completado (se tiene un azulejo de ese color en cada fila)
+* 7 Puntos por cada columna completa
+* 2 Puntos por cada fila completa.
+
+El jugador con más puntos se proclama vencedor. En caso de empate, el jugador con más filas completadas será el ganador. Si la igualdad permanece, se comparte la victoria.
