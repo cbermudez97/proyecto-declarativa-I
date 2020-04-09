@@ -36,3 +36,49 @@ El concepto básico es que **un jugador, al tomar piezas, siempre deberá tomar 
 3. Se introducen en la bolsa los 100 azulejos (20 de cada color) y se mezclan bien.
 4. Se rellena cada loseta de fábrica con 4 piezas extraídas de la bolsa al azar.
 5. Se escoge al jugador inicial del partido de forma aleatoria, en las siguientes rondas el jugador inicial, es quien escoja azulejos por priera vez del centro y no de las fábricas, y este obtendrá la ficha de jugador inicial que debe ponerse en el suelo del tablero, restando puntos.
+
+### Desarrollo de la Partida
+
+Una partida de ***Azul*** consta de un número indeterminado de rondas hasta que se cumpla la condición de finalización.
+
+#### Condiciones de Finalización
+
+* Se acabaron todos los azulejos
+* Un jugador al terminar la ronda completó una fila.
+
+Cada ronda consta a su vez, de tres fases.
+
+#### Fase I: Selección de Azulejos
+
+Esta fase consta de una serie de turnos alternados entre los jugadores, comenzando por el jugador inicial y continuando en el sentido de las agujas del reloj hasta que finaliza la fase.
+
+El turno de un jugador se desarrolla de la siguiente forma:
+
+1. De forma obligatoria, el jugador debe tomar todos los azulejos de un mismo color de una de las ubicaciones posibles:
+    * Si se toman de una fábrica, los azulejos de otros colores que no se cojan se desplazan al centro de la mesa.
+    * Si se toman del centro de la mesa y es el primer jugador en tomar azulejos de esta zona, el jugador debe tomar, adicionalmente, la ficha de jugador inicial y colocarla en la primera casilla disponible de la fila de suelo. En la siguiente ronda será el jugador inicial en esta fase.
+2. A continuación, el jugador debe colocar las losetas en alguna de las filas de su zona de preparación cumpliendo las siguientes normas:
+    * Si la fila ya contiene algún azulejo, los nuevos azulejos a colocar deben ser del mismo color.
+    * No se puede colocar azulejos de un tipo concreto en una fila de la zona de preparación si en la fila del muro correspondiente ya se encuentra un azulejo de ese tipo.
+    * Si todos los azulejos no caben en la fila escogida, los sobrantes deben colocarse en la fila de suelo (empezando por la primera casilla libre situada más a la izquierda).
+    * Es posible colocar directamente en la fila de suelo todos los azulejos escogidos en un turno de esta fase.
+
+La fase finaliza tras el turno del jugador que ha tomado el último azulejo en juego, es decir, no quedan azulejos en ninguna fábrica ni en el centro de la mesa.
+
+#### Fase II: Revestir el Muro
+
+Esta fase es automática y se puede desarrollar en paralelo. Cada jugador transporta un azulejo de cada una de las filas completadas al muro, comenzando por la fila superior y continuando hacia abajo. Por cada azulejo colocado en el muro se anotan puntos en función de los azulejos directamente conectados en la fila y/o columna correspondiente:
+
+* Si el azulejo no se coloca adyacente a ningún otro azulejo de forma ortogonal, se anotará 1 punto.
+* Si el azulejo se coloca adyacente al menos un azulejo, se cuentan cuantos azulejos directamente conectados en línea recta en la fila y/o columna hay. Por cada azulejo en cada una de ambas rectas se anota un punto, incluyendo al azulejo recién colocado. Por ejemplo, si el azulejo colocado tiene 1 azulejo adyacente en la columna y 1 azulejo adyacente en la fila, el jugador anota 4 puntos (2 azulejos en la fila y 2 azulejos en la columna).
+* El resto de azulejos de cada fila completada se colocan en la tapa de la caja (visibles para todos los jugadores).
+* Los azulejos que se encuentran en filas incompletas, permanecen en su posición para la siguiente ronda.
+* Por último, los jugadores restan puntos según las losetas que se encuentran en su fila de suelo, retrasando su marcador tantos puntos como indique cada casilla ocupada.
+
+La fase finaliza una vez todos los jugadores han anotado sus puntos.
+
+#### Fase III: Mantenimiento
+
+Si la partida no ha finalizado, se prepara la siguiente ronda, volviendo a sacar de la bolsa 4 azulejos por fábrica. Si la bolsa quedase vacía, en ese momento se reintroducirían todos los azulejos que se encuentran en la tapa de la caja a la bolsa y se continuaría reponiendo.
+
+Puede darse el caso de que, aun reintroduciendo los azulejos de la caja no haya azulejos suficientes para reponer todas las fábricas. En este caso se repondría hasta donde fuese posible.
