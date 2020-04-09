@@ -122,3 +122,13 @@ De la tercera componente forman parte los archivos `game.pl` y `player_logic.pl`
 El archivo `player_logic.pl` contiene predicados para simular la estrategía (que será explicada luego) utilizada por los jugadores basada en una métrica calculada para cada posible jugada escogiendo la de mayor valor resultado de aplicarle la métrica para realizarse.
 
 El archivo `game.pl` contiene predicados para simular las rondas del juego, la rotación de los jugadores y la condición de finalización del juego.
+
+## Manual del Simulador
+
+### Requerimientos
+
+Es necesario tener instalado `swi-prolog` para utilizar el simulador. Si se encuentra en un sistema operativo Linux puede instalarlo de los repositorios ejecutado `sudo apt-get install swi-prolog` en la consola.
+
+### Correr simulación
+
+Una vez cumplidos los requerimientos para correr una simulación debe ejecutar el comando `swipl game.pl` en la raíz del simulador. Luego dentro del entorno de `swi-prolog` debe introducir `startAzulGame(n).`, `n` representa la cantidad de jugadores con que se desea correr la simulación, siendo valido de `2` a `4` jugadores. El resultado de la simulación se mostrará en la consola mediante la descripción de cada jugada realizada y el estado resultante después de realizada esta, hasta la finalización del juego que se muestran los puntos obtenidos por cada jugador.
