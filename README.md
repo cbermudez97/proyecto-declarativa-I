@@ -1,5 +1,7 @@
 # Simulador del Juego Azul implementado en Prolog
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?label=license)](https://opensource.org/licenses/MIT) [![Last commit](https://img.shields.io/github/last-commit/stdevCbermudez/proyecto-declarativa-I.svg?style=flat)](https://github.com/stdevCbermudez/proyecto-declarativa-I/commits) [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/stdevCbermudez/proyecto-declarativa-I)](https://github.com/stdevCbermudez/proyecto-declarativa-I/commits) [![Github Stars](https://img.shields.io/github/stars/stdevCbermudez/proyecto-declarativa-I?style=flat&logo=github)](https://github.com/stdevCbermudez/proyecto-declarativa-I) [![Github Forks](https://img.shields.io/github/forks/stdevCbermudez/proyecto-declarativa-I?style=flat&logo=github)](https://github.com/stdevCbermudez/proyecto-declarativa-I) [![Github Watchers](https://img.shields.io/github/watchers/stdevCbermudez/proyecto-declarativa-I?style=flat&logo=github)](https://github.com/stdevCbermudez/proyecto-declarativa-I) [![GitHub contributors](https://img.shields.io/github/contributors/stdevCbermudez/proyecto-declarativa-I)](https://github.com/stdevCbermudez/proyecto-declarativa-I/graphs/contributors)
+
 > Proyecto I de la asignatura de Programación Declarativa del curso 2019-2020 de la carrera de Ciencia de la Computación de la Universidad de La Habana.
 
 ## Autores
