@@ -106,3 +106,11 @@ De la primera componente forman parte los archivos `tiles.pl` y `utils.pl`.
 El archivo `utils.pl` contiene predicados utiles para trabajar con listas principalmente y se utiliza en las restantes componentes también por lo que solo será mencionado en esta.
 
 El archivo `tiles.pl` contiene predicados para la definición de los tipos de losas y la cantidad de cada tipo al empezar el juego. También tiene predicados para iniciar el estado de la bolsa, llenar las fábricas posibles con las losas que esten en la bolsa y colocar la losa especial (ficha de jugador inicial) en el centro de la mesa cuando sea necesario. Además de los predicados para escoger las losas de una de las fábricas o del centro de la mesa y de imprimir tanto el estado de cada fábrica como el del centro de la mesa.
+
+### Segunda Componente
+
+De la segunda componente forman parte los archivos `player.pl`, `wall.pl` y `utils.pl`.
+
+El archivo `wall.pl` contiene predicados para la definición del muro (tipo de losa que debe ir en cada casilla del muro), para la inserción de losas en el muro, para obtener las losas del muro según varios criterios y para calcular los puntos al insertar una losa en el muro.
+
+El archivo `player.pl` continue predicados para la inicialización de los estados de los jugadores, para cambiar el jugador que le toca jugar, para actualizar sus filas de preparación, para actualizar su fila de piso, para actualizar su muro, para calcular los puntos cuando se inseta una losa determina en una de las filas de preparación, para imprimir el estado de cada jugador, etc.
