@@ -77,7 +77,7 @@ startAzulRound(_) :- % The bag is empty so no more rounds are posible
     format("El juego termina pues se han acabado las fichas.~n", _),
     !.
 startAzulRound(CantPlayers) :-
-    format("Empezando Nueva Ronda: ~n",_),
+    format("Empezando Nueva Ronda:~n",_),
     first_player(RoundFirst), % Set round first player
     update_actual(RoundFirst),
     toBuildFacts(CantPlayers, CantFacts), % Build Factories
@@ -94,7 +94,7 @@ startAzulRound(CantPlayers) :-
 
 % Start Azul Game with N players
 startAzulGame(CantPlayers) :-
-    format("Empazando juego de Azul con ~a jugadores!~n", [CantPlayers]),
+    format("Empezando juego de Azul con ~a jugadores!~n", [CantPlayers]),
     erase_players,
     createPlayers(CantPlayers),
     update_first(1), % Always player 1 starts
