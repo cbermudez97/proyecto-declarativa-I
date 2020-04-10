@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+
+\usepackage{multicol}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,latexsym,stmaryrd,graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{latexsym}
+\usepackage[pdftex,breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+
+\usepackage{epstopdf}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif,.eps}
+
+\RequirePackage[margin=1in]{geometry}
+
+%opening
+\title{Proyecto I de Programación Declarativa\\ \small{Simulador del Juego Azul implementado en Prolog}}
+\author{C412\\Carlos Bermudez Porto\\c.bermudez@estudiantes.matcom.uh.cu\\\\C412\\Leynier Gutiérrez González\\l.gutierrez@estudiantes.matcom.uh.cu}
+
+\begin{document}
+
+\maketitle
+
+\section{Descripción del Juego}
+
+\subsection{Componentes Básicas del Juego}
+
+\textbf{Azulejos:} Son una serie de piezas en cinco colores diferentes. El objetivo de los jugadores será obtener estos azulejos para conseguir conformar el muro que le han asignado.
+
+\textbf{Fábricas:} Losetas circulares en las que se colocarán los azulejos en grupos de cuatro al comienzo de cada ronda. La cantidad de fábricas depende de la cantidad de jugadores.
+
+El concepto básico es que \textbf{un jugador, al tomar piezas, siempre deberá tomar todas las de un mismo color que se encuentren en una ubicación concreta}. Estas ubicaciones serán las fábricas anteriores o el centro de la mesa, donde se irán colocando las losetas de las fábricas que no sean tomadas por un jugador al capturar las de un color concreto.
+
+\textbf{Tablero Personal:} Cada jugador contará con uno y en dicho tablero encontramos los siguientes elementos:
+
+\begin{itemize}
+	\item En la banda superior se encuentra el track de puntuación, con casillas numeradas de 0 a 99.
+	\item En la zona inferior izquierda encontramos el espacio de preparación. Son cinco filas con un número diferente de columnas cada una (la fila superior solo tiene una posición y cada nueva fila tendrá una columna más hasta llegar a la última fila con cinco columnas).
+	\item A la derecha encontramos el muro, compuesto por una cuadrícula de cinco filas y cinco columnas. En cada casilla de cada fila encontraremos impreso un tipo de azulejo, de forma que en ninguna fila y en ninguna columna se repite un mismo tipo.
+	\item Por último, en la fila inferior, encontramos una fila de casillas con un valor negativo que aumenta en una unidad cada dos casilla. En esta fila se irán colocando los azulejos que no se puedan/quieran colocar en alguna de las filas de la zona de preparación.
+\end{itemize}
+
+\textbf{Ficha de jugador inicial:} Determina qué jugador será el primero en escoger en una ronda. Esta ficha, además, funcionará como un azulejo pero que siempre será colocado en la fila de penalización.
+
+\subsection{Preparación de la Partida}
+
+\begin{enumerate}
+	\item Cada jugador recibe un tablero personal y un marcador de puntuación que colocará en la casilla de valor 0.
+	\item Se coloca, formando un círculo, un número de losetas de fábrica dependiente del número de jugadores:
+	\begin{itemize}
+		\item 2 Jugadores: 5 Losetas de Fábrica.
+		\item 3 Jugadores: 7 Losetas de Fábrica.
+		\item 4 Jugadores: 9 Losetas de Fábrica.
+	\end{itemize}
+	\item Se introducen en la bolsa los 100 azulejos (20 de cada color) y se mezclan bien.
+	\item Se rellena cada loseta de fábrica con 4 piezas extraídas de la bolsa al azar.
+	\item Se escoge al jugador inicial del partido de forma aleatoria, en las siguientes rondas el jugador inicial, es quien escoja azulejos por primera vez del centro y no de las fábricas, y éste obtendrá la ficha de jugador inicial que debe ponerse en el suelo del tablero, restando puntos.
+\end{enumerate}
+
+\subsection{Desarrollo de la Partida}
+
+Una partida de \textbf{Azul} consta de un número indeterminado de rondas hasta que se cumpla la condición de finalización.
+
+\subsubsection{Condiciones de Finalización}
+
+\begin{itemize}
+	\item Se acabaron todos los azulejos
+	\item Un jugador al terminar la ronda completó una fila.
+\end{itemize}
+
+Cada ronda consta a su vez, de tres fases.
+
+\subsubsection{Fase I: Selección de Azulejos}
+
+Esta fase consta de una serie de turnos alternados entre los jugadores, comenzando por el jugador inicial y continuando en el sentido de las agujas del reloj hasta que finaliza la fase.
+
+El turno de un jugador se desarrolla de la siguiente forma:
+
+\begin{enumerate}
+	\item De forma obligatoria, el jugador debe tomar todos los azulejos de un mismo color de una de las ubicaciones posibles:
+	\begin{itemize}
+		\item Si se toman de una fábrica, los azulejos de otros colores que no se cojan se desplazan al centro de la mesa.
+		\item Si se toman del centro de la mesa y es el primer jugador en tomar azulejos de esta zona, el jugador debe tomar, adicionalmente, la ficha de jugador inicial y colocarla en la primera casilla disponible de la fila de suelo. En la siguiente ronda será el jugador inicial en esta fase.
+	\end{itemize}
+	\item A continuación, el jugador debe colocar las losetas en alguna de las filas de su zona de preparación cumpliendo las siguientes normas:
+	\begin{itemize}
+		\item Si la fila ya contiene algún azulejo, los nuevos azulejos a colocar deben ser del mismo color.
+		\item No se puede colocar azulejos de un tipo concreto en una fila de la zona de preparación si en la fila del muro correspondiente ya se encuentra un azulejo de ese tipo.
+		\item Si todos los azulejos no caben en la fila escogida, los sobrantes deben colocarse en la fila de suelo (empezando por la primera casilla libre situada más a la izquierda).
+		\item Es posible colocar directamente en la fila de suelo todos los azulejos escogidos en un turno de esta fase.
+	\end{itemize}
+\end{enumerate}
+
+La fase finaliza tras el turno del jugador que ha tomado el último azulejo en juego, es decir, no quedan azulejos en ninguna fábrica ni en el centro de la mesa.
+
+\subsubsection{Fase II: Revestir el Muro}
+
+Esta fase es automática y se puede desarrollar en paralelo. Cada jugador transporta un azulejo de cada una de las filas completadas al muro, comenzando por la fila superior y continuando hacia abajo. Por cada azulejo colocado en el muro se anotan puntos en función de los azulejos directamente conectados en la fila y/o columna correspondiente:
+
+\begin{itemize}
+	\item Si el azulejo no se coloca adyacente a ningún otro azulejo de forma ortogonal, se anotará 1 punto.
+	\item Si el azulejo se coloca adyacente al menos un azulejo, se cuentan cuántos azulejos directamente conectados en línea recta en la fila y/o columna hay. Por cada azulejo en cada una de ambas rectas se anota un punto, incluyendo al azulejo recién colocado. Por ejemplo, si el azulejo colocado tiene 1 azulejo adyacente en la columna y 1 azulejo adyacente en la fila, el jugador anotó 4 puntos (2 azulejos en la fila y 2 azulejos en la columna).
+	\item El resto de azulejos de cada fila completada se colocan en la tapa de la caja (visibles para todos los jugadores).
+	\item Los azulejos que se encuentran en filas incompletas, permanecen en su posición para la siguiente ronda.
+	\item Por último, los jugadores restan puntos según las losetas que se encuentran en su fila de suelo, retrasando su marcador tantos puntos como indique cada casilla ocupada.
+\end{itemize}
+
+La fase finaliza una vez todos los jugadores han anotado sus puntos.
+
+\subsubsection{Fase III: Mantenimiento}
+
+Si la partida no ha finalizado, se prepara la siguiente ronda, volviendo a sacar de la bolsa 4 azulejos por fábrica. Si la bolsa quedase vacía, en ese momento se re-introducirán todos los azulejos que se encuentran en la tapa de la caja a la bolsa y se continuaría reponiendo.
+
+Puede darse el caso de que, aún reintroduciendo los azulejos de la caja no haya azulejos suficientes para reponer todas las fábricas. En este caso se repondrá hasta donde fuese posible.
+
+\subsection{Fin de la Partida}
+
+La partida termina en la ronda en la que un jugador consigue completar una o más filas, o los azulejos se agotaron. A los puntos acumulados se suman los siguientes:
+
+\begin{itemize}
+	\item 10 Puntos por cada color de azulejo que se haya completado (se tiene un azulejo de ese color en cada fila)
+	\item 7 Puntos por cada columna completa
+	\item 2 Puntos por cada fila completa.
+\end{itemize}
+
+El jugador con más puntos se proclama vencedor. En caso de empate, el jugador con más filas completadas será el ganador. Si la igualdad permanece, se comparte la victoria.
+
+\section{Implementación}
+
+La implementación se ha dividido en tres componentes principales. La primera componente es la encargada de manejar los conceptos las losas, de la bolsa, las fábricas, el centro de la mesa y la tapa de la caja. La segunda componente es la encargada de manejar los conceptos de jugador, sus filas de preparación, su fila de piso y su muro. Por último, la tercera componente es la encargada de utilizando las dos anteriores simular el juego según la estrategia implementada.
+
+\subsection{Primera Componente}
+
+De la primera componente forman parte los archivos $tiles.pl$ y $utils.pl$.
+
+El archivo $utils.pl$ contiene predicados útiles para trabajar con listas principalmente y se utiliza en las restantes componentes también por lo que solo será mencionado en esta.
+
+El archivo $tiles.pl$ contiene predicados para la definición de los tipos de losas y la cantidad de cada tipo al empezar el juego. También tiene predicados para iniciar el estado de la bolsa, llenar las fábricas posibles con las losas que estén en la bolsa y colocar la losa especial (ficha de jugador inicial) en el centro de la mesa cuando sea necesario. Además de los predicados para escoger las losas de una de las fábricas o del centro de la mesa y de imprimir tanto el estado de cada fábrica como el del centro de la mesa.
+
+\subsection{Segunda Componente}
+
+De la segunda componente forman parte los archivos $player.pl$, $wall.pl$ y $utils.pl$.
+
+El archivo $wall.pl$ contiene predicados para la definición del muro (tipo de losa que debe ir en cada casilla del muro), para la inserción de losas en el muro, para obtener las losas del muro según varios criterios y para calcular los puntos al insertar una losa en el muro.
+
+El archivo $player.pl$ continue predicados para la inicialización de los estados de los jugadores, para cambiar el jugador que le toca jugar, para actualizar sus filas de preparación, para actualizar su fila de piso, para actualizar su muro, para calcular los puntos cuando se inserta una losa determina en una de las filas de preparación, para imprimir el estado de cada jugador, etc.
+
+\subsection{Tercera Componente}
+
+De la tercera componente forman parte los archivos $game.pl$ y $player_logic.pl$.
+
+El archivo $player_logic.pl$ contiene predicados para simular la estrategia (que será explicada luego) utilizada por los jugadores basada en una métrica calculada para cada posible jugada escogiendo la de mayor valor resultado de aplicarle la métrica para realizarse.
+
+El archivo $game.pl$ contiene predicados para simular las rondas del juego, la rotación de los jugadores y la condición de finalización del juego.
+
+\subsection{Estrategia implementada}
+
+La estrategia implementada para escoger la jugada fue calcular los puntos que se obtenían con cada jugada posible, escogiendo la jugada con la cual se obtenía mayor cantidad de puntos. Si coincide que con más de una jugada se obtiene la máxima cantidad de puntos se escoge la jugada que implique la utilización de la fila de preparación con mayor tamaño.
+
+\section{Manual del Simulador}
+
+\subsection{Requerimientos}
+
+Es necesario tener instalado $swi-prolog$ para utilizar el simulador. Si se encuentra en un sistema operativo Linux puede instalarlo de los repositorios ejecutado $sudo apt-get install swi-prolog$ en la consola.
+
+\subsection{Correr simulación}
+
+Una vez cumplidos los requerimientos para correr una simulación debe ejecutar el comando $swipl game.pl$ en la raíz del simulador. Luego dentro del entorno de $swi-prolog$ debe introducir $startAzulGame(n).$, $n$ representa la cantidad de jugadores con que se desea correr la simulación, siendo válido de $2$ a $4$ jugadores. El resultado de la simulación se mostrará en la consola mediante la descripción de cada jugada realizada y el estado resultante después de realizada esta, hasta la finalización del juego que se muestran los puntos obtenidos por cada jugador.
+
+\end{document}
