@@ -103,7 +103,7 @@ La implementación se ha dividido en tres componentes principales. La primera co
 
 De la primera componente forman parte los archivos `tiles.pl` y `utils.pl`.
 
-El archivo `utils.pl` contiene predicados utiles para trabajar con listas principalmente y se utiliza en las restantes componentes también por lo que solo será mencionado en esta.
+El archivo `utils.pl` contiene predicados útiles para trabajar con listas principalmente y se utiliza en las restantes componentes también por lo que solo será mencionado en esta.
 
 El archivo `tiles.pl` contiene predicados para la definición de los tipos de losas y la cantidad de cada tipo al empezar el juego. También tiene predicados para iniciar el estado de la bolsa, llenar las fábricas posibles con las losas que estén en la bolsa y colocar la losa especial (ficha de jugador inicial) en el centro de la mesa cuando sea necesario. Además de los predicados para escoger las losas de una de las fábricas o del centro de la mesa y de imprimir tanto el estado de cada fábrica como el del centro de la mesa.
 
